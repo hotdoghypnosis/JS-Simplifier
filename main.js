@@ -1163,7 +1163,7 @@ let package = async string => {
                 container.this.append("<div/>");
                 return field({tag: "div"}, true).last.css(
                   css
-                ).getContext("2d");
+                );
               },
               canvas (css){
                 container.this.append("<canvas>")
@@ -1391,3 +1391,5 @@ let package = async string => {
     return false; // promised resolved as false
   }
 }
+
+package `default`
