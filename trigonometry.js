@@ -25,22 +25,20 @@ circle = {
     return pseudo;
   },
   rotate (coords, rotation){
+    let x = coords[0], y = coords[1];
     return circle.coords(
-      circle.degrees(coords) + rotation,
-      (x ** 2) + (y ** 2) //  hypothetical radius
+      circle.degrees(x, y) + rotation,
+      Math.sqrt(
+        (x ** 2) + (y ** 2) //  hypothetical radius
+      )
     )
   },
   sphere (x, y, z, rotxz, roty){
-    let thetaXrot = circle.degrees(x, z),
-    newZ = circle.rotate(x, z, -thetaXrot)[1],
-    yRotYield = circle.rotate(newZ, y, -roty),
-    $coords = circle.rotate(0, yRotYield[0], thetaXrot + rotxz);
-    return {
-      x: $coords[0] || 0,
-      y: yRotYield[1],
-      z: $coords[1] || 0
-    }
+
   },
+
+  // functions below are primarily for 3d graphics
+
   plane: {
     ratio (angle = 0){
       val = (type) => Math[type](Math.radians(
