@@ -1,4 +1,9 @@
-// in depth revision of circle functions
+/*
+    In depth revision of circle functions,
+    note that the results are APPROXIMATIONS,
+    and are not always exact
+*/
+
 
 circle = {
   degrees (x, y){
@@ -16,12 +21,12 @@ circle = {
   ),
   coords (theta, rad){
     if (theta >= 360 || theta < 0)
-    return circle.coords(circle.simplify(coords), rad)
+      return circle.coords(circle.simplify(theta), rad)
     r90 = (li) => [li[1], -li[0]] // +90 degree rotation
     op = operation => Math[operation](Math.radians(theta % 90)) * rad
     let pseudo = [op("sin"), op("cos")] // x and y
     for (let i = 0; i < circle.quadrant(theta) - 1; i++)
-    pseudo = r90(pseudo); // get closer to target
+      pseudo = r90(pseudo); // get closer to target
     return pseudo;
   },
   rotate (coords, rotation){
@@ -33,39 +38,28 @@ circle = {
       )
     )
   },
-  sphere (x, y, z, rotxz, roty){
-
-  },
-
-  // functions below are primarily for 3d graphics
-
-  plane: {
-    ratio (angle = 0){
-      val = (type) => Math[type](Math.radians(
-        circle.simplify(angle)
-      ))
-      return {
-        x: val("sin"),
-        y: val("cos")
-      }
-    },
-    move (angle = 0, type, amount = 1){
-      let setup = {
-        forward: [1, 1],
-        backward: [-1, -1],
-        left: [1, -1, true],
-        right: [-1, 1, true]
-      },
-      ratio = circle.plane.ratio(angle),
-      array = setup[type.toLowerCase()],
-      pull = (num, which) => array[num] * ratio[which] * amount,
-      end = [pull(0, "x"), pull(1, "y")];
-      if (array[2])
-      end = end.reverse();
-      return {
-        x: end[0],
-        y: end[1]
-      }
+  sphere_raw (xyz, rotxyyzxz){
+    // raw unorganized data computation:
+    let coords = xyz;
+    for (let rotation of rotxyyzxz){
+      let pos = rotxyyzxz.indexOf(rotation);
+      coords = [
+        xyz.position(pos + 2),
+        circle.rotate(
+          xyz.position()
+        )
+      ]
     }
+    return coords; // update
+  },
+  sphere (x, y, z, rotxy, rotyz, rotxz){
+    // makes sphere function easier to read/input
+    return circle.sphere_raw (
+      [x, y, z], [rotxy, rotyz, rotxz]
+    )
+  },
+  tangent (angle){
+    let coords = circle.coords(angle + 90, 1);
+    return coords[1] / coords[0] // slope of tangent line
   }
 }
