@@ -19,3 +19,20 @@ type = o => {
 sleep = time => new Promise (
   resolve => setTimeout(resolve, +time)
 ) // use in async functions
+
+loop = (amount = 0, queue, time) => {
+  if (!time){
+    // accounts for time = 0
+    for (let i = 0; i < amount; i++)
+    queue(i);
+    return amount;
+  }
+  invoke = async i => {
+    if (i < amount){
+      await sleep(time);
+      queue(i);
+      invoke(i + 1)
+    }
+  }
+  return invoke(0); // start
+}
