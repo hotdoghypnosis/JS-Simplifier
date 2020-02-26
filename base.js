@@ -1,4 +1,5 @@
-// basic functions excluding prototypes
+// Note: this section is FINISHED
+// basic functions excluding prototypes -->
 
 random = (o = [0, 1], integer) => {
   num = op => Math[op](o[0], o[1])
