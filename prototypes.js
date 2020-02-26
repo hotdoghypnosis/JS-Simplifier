@@ -71,7 +71,6 @@ Math.new({
     })
     return finalNumber;
   },
-  decimal: number => Math.ceil(number) !== number ? true : false,
   factors: number => {
     let returner = [];
     loop (number, i => {
@@ -116,7 +115,7 @@ Math.new({
   prime: number => Math.factors(number).length == 2 ? true : false
 })
 
-
+// ARRAYS -->
 
 Array.prototype.getters({
   first (){
@@ -133,17 +132,21 @@ Array.prototype.getters({
   }
 })
 
-
-
 Array.prototype.new({
-  merge (o){
-    return [...this, ...o];
-  },
   position (number){
     return this[number % this.length];
   },
+
+  /*
+    below is ONLY for lists containing just
+    numerical values, other value types will not
+    give the same results
+  */
+
   sum (){
-    return this.reduce((accumulative, value) => accumulative + value);
+    return this.reduce(
+      (accumulative, value) => accumulative + value
+    )
   },
   average (){
     return this.sum() / this.length;
@@ -153,7 +156,7 @@ Array.prototype.new({
   }
 })
 
-
+// STRINGS -->
 
 String.prototype.new({
   reverse (){
@@ -175,12 +178,10 @@ String.prototype.new({
   }
 })
 
-
-
 String.prototype.getters({
   words (){
     return this.all("  ", " ").trim().all(" ") + 1;
-  },
+  }, // returns accurate word count
   RGB (){
     let start = this.replace("#", "");
     trim = (from, to) => parseInt(start.substring(from, to), 16);
