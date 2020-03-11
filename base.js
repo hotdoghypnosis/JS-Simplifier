@@ -37,5 +37,3 @@ loop = (amount = 0, queue, time) => {
   }
   return invoke(0); // start
 }
-
-parse = list => JSON.parse(`{"${list[0]}": ${list[1]}}`)
