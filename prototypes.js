@@ -42,17 +42,17 @@ Object.prototype.new({
   },
 
   /*
-    functions below turn the object into
-    an array as to replicate the effects
-  */
+   * functions below turn the object into
+   * an array as to replicate the effects
+   */
 
   first (){
     return this.keys[0]
-        || this[0] // accommodate elements
+    || this[0] // accommodate elements
   },
   last (){
     return this.keys[this.keys.length - 1]
-        || this[this.length - 1] // (elements)
+    || this[this.length - 1] // (elements)
   }
 })
 
