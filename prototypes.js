@@ -96,10 +96,10 @@ Array.prototype.new({
   },
 
   /*
-    below is ONLY for lists containing just
-    numerical values, other value types will not
-    give the same results
-  */
+   * below is ONLY for lists containing just
+   * numerical values, other value types will not
+   * give the same results
+   */
 
   sum (){
     return this.reduce(
@@ -153,13 +153,4 @@ String.prototype.getters({
   words (){
     return this.all("  ", " ").trim().all(" ") + 1;
   }, // returns accurate word count
-  RGB (){
-    let start = this.replace("#", "");
-    trim = (from, to) => parseInt(start.substring(from, to), 16);
-    return [
-      trim(0, 2),
-      trim(2, 4),
-      trim(4, 6)
-    ]
-  }
 })
