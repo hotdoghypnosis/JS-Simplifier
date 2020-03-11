@@ -85,33 +85,6 @@ Math.new({
     })
     return returner;
   },
-  query (equation, quality, o){
-    if (equation.indexOf("x") == -1 || quality <= 0)
-    return false; // invalid setup
-    let y = 0, start = o[0], end = o[1], x = start,
-    amount = Math.abs(Math.round(
-      (start - end) / quality
-    )), result = [],
-    coefficient = start > end ? -1 : 1
-    ev = () => {
-      if ((
-        coefficient < 1 ? (x < end) : (x > end)
-      ))
-      return;
-      eval(`y = ${equation}`)
-      result.push([x, y])
-      return x += +quality * coefficient;
-    }
-    loop(amount + 1, ev)
-    return result;
-  },
-  circle (radius, tolerance){
-    let result = [], ev = [0, radius]
-    loop(360 * tolerance, i => {
-      result.push(ev.rotate(i))
-    })
-    return result;
-  },
   prime: number => Math.factors(number).length == 2 ? true : false
 })
 
