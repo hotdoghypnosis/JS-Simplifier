@@ -147,9 +147,7 @@ String.prototype.new({
     })
     return replacement ? placeholder : count;
   }
-})
-
-String.prototype.getters({
+}).getters({
   words (){
     return this.all("  ", " ").trim().all(" ") + 1;
   }, // returns accurate word count
