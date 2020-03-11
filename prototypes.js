@@ -130,7 +130,7 @@ Array.prototype.new({
 // STRINGS -->
 
 String.prototype.new({
-  reverse (){
+  invert (){
     return this.split("").reverse().join("");
   },
   all (value, replacement){
@@ -150,5 +150,5 @@ String.prototype.new({
 }).getters({
   words (){
     return this.all("  ", " ").trim().all(" ") + 1;
-  }, // returns accurate word count
+  } // returns accurate word count
 })
