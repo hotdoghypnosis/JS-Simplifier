@@ -81,7 +81,7 @@ Math.new({
         !returner.includes(i) &&
         !returner.includes(secondary)
       )
-      returner.push(i, secondary);
+        returner.push(i, secondary);
     })
     return returner;
   },
@@ -110,7 +110,9 @@ Array.prototype.new({
     return this.sum() / this.length;
   },
   rotate (amount){
-    return circle.rotate(this, amount)
+    try {
+      return circle.rotate(this, amount)
+    } catch { return false; }
   }
 }).getters({
   first (){
@@ -119,10 +121,8 @@ Array.prototype.new({
   last (){
     return this[this.length - 1];
   },
-  HEX (){
-    return "#" + this.map(number => number.toString(16)).join("");
-  },
   empty (){
+    // return boolean of length
     return !this.length;
   }
 })
@@ -133,15 +133,13 @@ String.prototype.new({
   invert (){
     return this.split("").reverse().join("");
   },
-  all (value, replacement){
+  all (value, replacement = ""){
     let placeholder = this, count = 0;
-    if (replacement === undefined)
-    replacement = "";
     if (value == replacement || replacement.indexOf(value) != -1)
-    return false;
+      return false;
     loop (this.length, i => {
       if (placeholder.indexOf(value) != -1){
-        count++;
+          count++;
         placeholder = placeholder.replace(value, replacement);
       }
     })
