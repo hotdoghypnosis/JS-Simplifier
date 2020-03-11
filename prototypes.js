@@ -90,21 +90,6 @@ Math.new({
 
 // ARRAYS -->
 
-Array.prototype.getters({
-  first (){
-    return this[0];
-  },
-  last (){
-    return this[this.length - 1];
-  },
-  HEX (){
-    return "#" + this.map(number => number.toString(16)).join("");
-  },
-  empty (){
-    return !this.length;
-  }
-})
-
 Array.prototype.new({
   position (number){
     return this[number % this.length];
@@ -126,6 +111,19 @@ Array.prototype.new({
   },
   rotate (amount){
     return circle.rotate(this, amount)
+  }
+}).getters({
+  first (){
+    return this[0];
+  },
+  last (){
+    return this[this.length - 1];
+  },
+  HEX (){
+    return "#" + this.map(number => number.toString(16)).join("");
+  },
+  empty (){
+    return !this.length;
   }
 })
 
