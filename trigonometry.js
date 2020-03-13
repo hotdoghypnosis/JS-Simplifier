@@ -1,8 +1,8 @@
 /*
-    In depth revision of circle functions,
-    note that the results are APPROXIMATIONS,
-    and are not always exact
-*/
+ * In depth revision of circle functions,
+ * note that the results are APPROXIMATIONS,
+ * and are not always exact
+ */
 
 
 circle = {
